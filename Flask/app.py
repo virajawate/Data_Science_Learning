@@ -28,23 +28,23 @@ def fail(score):
 @app.route('/calculate', methods=['POST', 'GET'])
 def calculate():
     if request.method == 'GET':
-        return render_template("calcualte.html")
+        return render_template("calculate.html")
     else:
         maths = float(request.form['maths'])
         science = float(request.form['science'])
         history = float(request.form['history'])
         language= float(request.form['language'])
-
         marks_avg = (maths + science + history + language) / 3
         result = ""
+        
         if marks_avg >= 50:
             result = "Success"
         else:
             result = "Fail"
         
-        return render_template('resukt.html', results = marks_avg)
+        return render_template('result.html', results = marks_avg)
     
 #Assign a try loop
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug = True)

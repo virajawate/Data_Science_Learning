@@ -1,7 +1,24 @@
-<html>
+<!-- <html>
 {% if results >= 50 %}
 <h1>The result is pass and the average marks is {{results}}</h1>
 {% else %}
 <h1>The result is fail adn the average marks is {{results}}</h1>
 {% endif %}
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result Page</title>
+</head>
+<body>
+    <h2>Result Page</h2>
+    <p>Marks Average: {{ results }}</p>
+    {% if results >= 50 %}
+        <p>Congratulations! You passed the course.</p>
+    {% else %}
+        <p>Sorry, you failed the course.</p>
+    {% endif %}
+    <p><a href="{{ url_for('index') }}">Go back to Index</a></p>
+</body>
 </html>
