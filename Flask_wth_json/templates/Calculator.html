@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>{{ form_data.form.title }}</h1>
+    <form method="POST" action="/calculator" id="calculator-form">
+        <div>
+            {% for field in form_data.form.fields %}
+                <label for="{{ field.name }}">{{ field.label }}</label>
+                {% if field.type == "select" %}
+                    <select name="{{ field.name }}" id="{{ field.name }}">
+                        {% for option in field.options %}
+                            <option value="{{ option }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                {% else %}
+                    <input type="{{ field.type }}" name="{{ field.name }}" id="{{ field.name }}" {% if field.required %}required{% endif %}>
+                    <br>
+                {% endif %}
+                <br>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="col-xs-offset-3 col-xs-9">
+            <!-- Use a button element to trigger the calculation -->
+            <button type="submit" class="btn btn-success">Calculate</button>
+        </div>
+    </form>
+
+    <!-- Add JavaScript to submit the form as a POST request -->
+    <script>
+        function calculate() {
+            var form = document.getElementById('calculator-form');
+            form.submit();
+        }
+    </script>
+
+</body>
+</html>

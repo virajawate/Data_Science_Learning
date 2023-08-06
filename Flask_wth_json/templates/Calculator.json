@@ -1,0 +1,30 @@
+{
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "form": {
+        "title" : "Flaskuulator",
+        "fields": [
+            {
+                "name" : "operation",
+                "label": "operation",
+                "type" : "select",
+                "options": ["add", "sub", "mul", "div"],
+                "required": true
+            },
+            {
+                "name": "number_1",
+                "label": "number_1",
+                "type" : "number",
+                "required": true
+            },
+            {
+                "name": "number_2",
+                "label": "number_2",
+                "type":"number",
+                "required":true
+            }
+        ],
+        "submitLabel": "submit"
+    }
+}
