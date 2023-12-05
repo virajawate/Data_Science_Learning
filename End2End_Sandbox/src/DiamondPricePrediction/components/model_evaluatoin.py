@@ -8,26 +8,20 @@ from src.DiamondPricePrediction.utils.utils import load_object
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
-class ModleEvaluation:
-    def __init__(self) -> None:
-        pass
-    
+class ModelEvaluation:
     def eval_metrics(self, actual, pred):
         rmse = np.sqrt(mean_squared_error(actual, pred))
         mae = mean_absolute_error(actual, pred)
         r2 = r2_score(actual, pred)
-        
         return rmse, mae, r2
-    
+
     def initiate_model_evaluation(self, train_a, test_a):
         try:
             x_test, y_test = (test_a[:, :-1], test_a[:, -1])
             
             model_path = os.path.join("artifacts", "model.pkl")
             model = load_object(model_path)
-            
-            mlflow.set_registry_uri("")
-            
+
             tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
             print(tracking_url_type_store)
             
@@ -44,4 +38,5 @@ class ModleEvaluation:
                 else:
                     mlflow.sklearn.log_model(model, 'model')
         except Exception as e:
+            print(f"An error occurred: {e}")
             raise e

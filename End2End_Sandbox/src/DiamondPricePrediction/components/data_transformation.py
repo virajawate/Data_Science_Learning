@@ -54,7 +54,7 @@ class Data_Transformation:
                 ('scaler', StandardScaler())
             ])
             
-            preprocessor = color_categories([
+            preprocessor = ColumnTransformer([
                 ('num_pipeline', num_pipeline, numerical_features),
                 ('cat_pipeline', categorical_pipeline, categorical_features)
             ])
