@@ -20,11 +20,12 @@ def save_obj(file_path, obj):
 def Evaluate_model(x_train, x_test, y_train, y_test, models):
     try:
         report_r2 = {}
-        for model in models:
-            model.fit(x_train, y_train)
-            y_pred = model.predict(x_test)
-            model_test_score = r2_score(y_test, y_pred)
-            report_r2[model] = model_test_score
+        for i in range(len(models)):
+            model = list(models.values())[i]
+            model.fit(x_train, y_train)                           # Train model
+            y_pred = model.predict(x_test)                        # Predict Testing data
+            model_test_score = r2_score(y_test, y_pred)           # Get R2 score for test data
+            report_r2[list(models.keys())[i]] = model_test_score  # Storing the score with model name in Dictionary
         return report_r2
     
     except Exception as e:
