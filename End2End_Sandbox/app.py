@@ -1,5 +1,5 @@
 from src.DiamondPricePrediction.pipelines.prediction_pipeline import CustomData, PredictPipeline
-
+from src.DiamondPricePrediction.logger import logging
 from flask import Flask, request, render_template, jsonify
 
 app = Flask(__name__)
@@ -29,24 +29,15 @@ def predict_datapoints():
         
         predict_pipeline = PredictPipeline()
         
+        logging.info(final_data)
+        
         pred = predict_pipeline.predict(final_data)
         
         result = round(pred[0], 2)
         
         return render_template("Result.html", final_result = result)
 
-@app.route("/result", methods=["GET", "POST"])
-def result():
-    if request.method == "GET":
-        return render_template("Result.html")
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
-app.run(debug=True)
-
-"""sumary_line
-src.DiamondPricePrediction.exception.CustomException: Error occured in the file name [C:\Users\viraj\Documents\GitHub\Data_Science_Learning\End2End_Sandbox\src\DiamondPricePrediction\pipelines\prediction_pipeline.py] line number [19] error message [Cannot use median strategy with non-numeric data:
-could not convert string to float: 'SI2']
-Keyword arguments:
-argument -- description
-Return: return_description
-"""

@@ -5,7 +5,7 @@ from src.DiamondPricePrediction.logger import logging
 from src.DiamondPricePrediction.utils.utils import load_object
 
 class PredictPipeline:
-    def __init__(self) -> None:
+    def __init__(self):
         pass
     
     def predict(self, features):
@@ -49,7 +49,7 @@ class CustomData:
     def get_data_as_df(self):
         try:
             custom_data_input_dict = {
-                'carat':[self.clarity], 'depth':[self.depth], 'table' : [self.table],
+                'carat':[self.carat], 'depth':[self.depth], 'table' : [self.table],
                 'x' : [self.x], 'y' : [self.y], 'z' : [self.z],
                 'cut' : [self.cut], 'color' : [self.color], 'clarity' : [self.clarity]                
             }

@@ -48,7 +48,7 @@ class Data_Transformation:
                 ]
             )
             
-            categorical_pipeline = Pipeline(steps=[
+            cat_pipeline = Pipeline(steps=[
                 ('imputer', SimpleImputer(strategy='most_frequent')),
                 ('ordinalencoder', OrdinalEncoder(categories=[cut_categories, color_categories, clarity_categories])),
                 ('scaler', StandardScaler())
@@ -56,7 +56,7 @@ class Data_Transformation:
             
             preprocessor = ColumnTransformer([
                 ('num_pipeline', num_pipeline, numerical_features),
-                ('cat_pipeline', categorical_pipeline, categorical_features)
+                ('cat_pipeline', cat_pipeline, categorical_features)
             ])
             
             return preprocessor
